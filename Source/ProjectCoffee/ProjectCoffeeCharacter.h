@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "ProjectCoffee.h"
 #include "ProjectCoffeeCharacter.generated.h"
 
 UCLASS(config=Game)
@@ -18,6 +19,76 @@ class AProjectCoffeeCharacter : public ACharacter
 	/** Follow camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class UCameraComponent* FollowCamera;
+
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Health")
+	//float MaxHealth;
+
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Health")
+	//float CrntHealth;
+
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stamina")
+	//float MaxStamina;
+
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stamina")
+	//float CrntStamina;
+
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stamina")
+	//UCurveFloat *StaminaCurve;
+
+	//UPROPERTY(EditAnywhere, Category = "Health")
+	//FTimeline myTimeLine;
+
+	//UPROPERTY(EditAnywhere, Category = "Stamina")
+	//FTimerHandle MemberTimerHandle;
+
+	//UPROPERTY(EditAnywhere, Category = "Stamina")
+	//FTimerHandle StaminaTimerHandle;
+
+	//float CurveFloatValue;
+	//float TimelineValue;
+	//bool bCanUseStamina;
+
+	//UFUNCTION(BlueprintPure, Category = "Health")
+	//float GetHealth();
+
+	//UFUNCTION(BlueprintPure, Category = "Health")
+	//FText GetHealthText();
+
+	//UFUNCTION(BlueprintPure, Category = "Stamina")
+	//float GetStamina();
+
+	//UFUNCTION(BlueprintPure, Category = "Stamina")
+	//FText GetStaminaText();
+
+	//UFUNCTION()
+	//void DamageTimer();
+
+	//UFUNCTION()
+	//void SetDamageState();
+
+	//UFUNCTION()
+	//void SetDamageValue();
+
+	//UFUNCTION()
+	//void SetStaminaState();
+
+	//UFUNCTION()
+	//void SetStaminaChange(float StaminaValue);
+
+	//UFUNCTION()
+	//void UpdateStamina();
+
+	//UFUNCTION(BlueprintPure, Category = "Health")
+	//bool PlayFlash();
+
+	//UFUNCTION()
+	//void RecievePointDamage(float Damage, const UDamageType* DamageType, FVector HitLocation,
+	//	FVector HitNormal, UPrimitiveComponent* HitComponent, FName BoneName, FVector ShotFromDirection,
+	//	AController* InstigatedBy, AActor* DamageCauser, const FHitResult& HitInfo);
+
+	//UFUNCTION(BlueprintCallable, Category = "Health")
+	//void UpdateHealth(float HealthChange);
+
 public:
 	AProjectCoffeeCharacter();
 
@@ -31,8 +102,9 @@ public:
 
 protected:
 
-	/** Resets HMD orientation in VR. */
-	void OnResetVR();
+	virtual void BeginPlay() override;
+
+	virtual void Tick(float DeltaTime) override;
 
 	/** Called for forwards/backward input */
 	void MoveForward(float Value);
@@ -40,23 +112,6 @@ protected:
 	/** Called for side to side input */
 	void MoveRight(float Value);
 
-	/** 
-	 * Called via input to turn at a given rate. 
-	 * @param Rate	This is a normalized rate, i.e. 1.0 means 100% of desired turn rate
-	 */
-	void TurnAtRate(float Rate);
-
-	/**
-	 * Called via input to turn look up/down at a given rate. 
-	 * @param Rate	This is a normalized rate, i.e. 1.0 means 100% of desired turn rate
-	 */
-	void LookUpAtRate(float Rate);
-
-	/** Handler for when a touch input begins. */
-	void TouchStarted(ETouchIndex::Type FingerIndex, FVector Location);
-
-	/** Handler for when a touch input stops. */
-	void TouchStopped(ETouchIndex::Type FingerIndex, FVector Location);
 
 protected:
 	// APawn interface

@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Blueprint/UserWidget.h"
 #include "GameFramework/GameModeBase.h"
 #include "ProjectCoffeeGameMode.generated.h"
 
@@ -13,6 +14,16 @@ class AProjectCoffeeGameMode : public AGameModeBase
 
 public:
 	AProjectCoffeeGameMode();
+	UFUNCTION(BlueprintCallable, Category = "UMG Game")
+	void ChangeMenuWidget(TSubclassOf<UUserWidget> NewWidgetClass);
+
+protected:
+	virtual void BeginPlay() override;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "UMG Game")
+	TSubclassOf<UUserWidget> StartingWidgetClass; 
+
+	UPROPERTY()
+		UUserWidget* CurrentWidget;
 };
 
 
