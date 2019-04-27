@@ -12,6 +12,8 @@ class AProjectCoffeeCharacter : public ACharacter
 {
 	GENERATED_BODY()
 
+public:
+
 	/** Camera boom positioning the camera behind the character */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class USpringArmComponent* CameraBoom;
@@ -19,6 +21,29 @@ class AProjectCoffeeCharacter : public ACharacter
 	/** Follow camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class UCameraComponent* FollowCamera;
+
+	UPROPERTY(BlueprintReadWrite, EditAnyWhere, Category = "Base Character")
+		float MaxHealth = 100;
+
+	UPROPERTY(BlueprintReadWrite, EditAnyWhere, Category = "Base Character")
+		float Health = 100;
+
+	UPROPERTY(BlueprintReadWrite, EditAnyWhere, Category = "Base Character")
+		float CurrentHealth = Health/MaxHealth;
+
+	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "Base Character")
+		bool isDead = false;
+
+	virtual void CalculateDead();
+
+	UFUNCTION(BlueprintCallable, Category = "Base Character")
+		virtual void CalculateHealth(float delta);
+
+#if WITH_EDITOR
+	virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent)
+		override;
+#endif // WITH_EDITOR
+
 
 	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Health")
 	//float MaxHealth;
